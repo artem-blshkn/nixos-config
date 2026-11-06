@@ -1,0 +1,17 @@
+result
+result-*
+.direnv/
+.metrics/
+target/
+.superpowers/
+# Образы тестовых машин не являются исходниками системы.
+*.qcow2
+*.vdi
+*.iso
+# Секреты не должны попадать даже в публичную историю.
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx

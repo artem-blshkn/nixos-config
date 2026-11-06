@@ -1,0 +1,18 @@
+name: eval
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  eval:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cachix/install-nix-action@v30
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+      # Полная оценка конфигурации без сборки: ловит неверные опции и типы.
+      - name: Evaluate NixOS configuration
+        run: nix eval .#nixosConfigurations.thinkpad.config.system.build.toplevel.drvPath
